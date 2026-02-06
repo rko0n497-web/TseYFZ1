@@ -1,716 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل تعلم البرمجة | TseYFZ</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* أنماط خاصة بصفحة التعلم */
-        .learning-hero {
-            background: linear-gradient(135deg, rgba(11, 26, 54, 0.95), rgba(19, 43, 84, 0.9));
-            border-radius: var(--radius);
-            padding: 4rem 2rem;
-            margin: 2rem auto;
-            max-width: var(--max);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-        
-        .learning-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
-            z-index: 0;
-        }
-        
-        .learning-title {
-            font-size: 3rem;
-            background: linear-gradient(90deg, #00ff88, #00ffaa, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .learning-subtitle {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .roadmap-container {
-            max-width: var(--max);
-            margin: 3rem auto;
-            padding: 0 1rem;
-        }
-        
-        .roadmap-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .roadmap-step:hover {
-            transform: translateX(-10px);
-            border-color: rgba(255, 215, 0, 0.3);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        
-        .step-number {
-            background: linear-gradient(135deg, gold, #ffd700);
-            color: #0b1a36;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: bold;
-            flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        .step-title {
-            color: gold;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .step-description {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-        
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .resource-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .resource-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.4);
-        }
-        
-        .resource-icon {
-            font-size: 2rem;
-            color: gold;
-            margin-bottom: 1rem;
-        }
-        
-        .resource-title {
-            color: gold;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .resource-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #00ffaa;
-            text-decoration: none;
-            margin-top: 1rem;
-            font-weight: 600;
-        }
-        
-        .resource-link:hover {
-            text-decoration: underline;
-        }
-        
-        .tips-section {
-            background: linear-gradient(135deg, rgba(54, 11, 54, 0.9), rgba(84, 19, 84, 0.9));
-            border-radius: var(--radius);
-            padding: 3rem;
-            margin: 4rem auto;
-            max-width: var(--max);
-            border: 1px solid rgba(255, 0, 255, 0.3);
-        }
-        
-        .tip-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #ff00ff;
-        }
-        
-        .faq-section {
-            max-width: var(--max);
-            margin: 4rem auto;
-            padding: 0 1rem;
-        }
-        
-        .faq-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: gold;
-            font-size: 1.1rem;
-        }
-        
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-        
-        .faq-answer.open {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
-        
-        .cta-learning {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(11, 54, 26, 0.9), rgba(19, 84, 43, 0.9));
-            border-radius: var(--radius);
-            margin: 4rem auto;
-            max-width: var(--max);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-        }
-        
-        @media (max-width: 768px) {
-            .learning-title {
-                font-size: 2.2rem;
-            }
-            
-            .learning-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .roadmap-step {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.5rem;
-            }
-            
-            .step-number {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-            
-            .tips-section,
-            .cta-learning {
-                padding: 2rem 1rem;
-            }
-        }
-    </style>
-</head>
-<body class="learning-page">
-    <!-- شريط التنقل -->
-    <div class="toolbar" role="region" aria-label="شريط التنقل">
-        <div class="toolbar-inner">
-            <!-- اليسار: شعار -->
-            <div class="toolbar-left">
-                <div class="brand">
-                    <span class="brand-name">TseYFZ</span>
-                    <span class="brand-tag">تعلم البرمجة بسهولة</span>
-                </div>
-            </div>
-
-            <!-- الوسط: روابط -->
-            <div class="toolbar-center">
-                <nav class="nav-links">
-                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a>
-                    <a href="about.html" class="nav-link"><i class="fas fa-user"></i> عني</a>
-                    <a href="learning.html" class="nav-link active"><i class="fas fa-code"></i> تعلم البرمجة</a>
-                    <a href="#contact" class="nav-link"><i class="fas fa-question-circle"></i> مساعدة</a>
-                </nav>
-            </div>
-
-            <!-- اليمين: قائمة -->
-            <div class="toolbar-right">
-                <div class="hdr-menu">
-                    <button class="hdr-menu__btn" aria-haspopup="true" aria-expanded="false" title="القائمة">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    
-                    <ul class="hdr-menu__list" hidden>
-                        <li><a href="index.html" class="hdr-menu__link"><i class="fas fa-home"></i> الرئيسية</a></li>
-                        <li><a href="about.html" class="hdr-menu__link"><i class="fas fa-user"></i> عني</a></li>
-                        <li><a href="learning.html" class="hdr-menu__link active"><i class="fas fa-code"></i> تعلم البرمجة</a></li>
-                        <li class="hdr-section">— مصادر تعليمية —</li>
-                        <li><a href="#resources" class="hdr-menu__link"><i class="fas fa-book"></i> المصادر المجانية</a></li>
-                        <li><a href="#roadmap" class="hdr-menu__link"><i class="fas fa-map"></i> خطة التعلم</a></li>
-                        <li><a href="#tips" class="hdr-menu__link"><i class="fas fa-lightbulb"></i> نصائح ذهبية</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- قسم البطل -->
-    <section class="learning-hero">
-        <h1 class="learning-title">🎓 رحلة تعلم البرمجة من الصفر</h1>
-        <p class="learning-subtitle">
-            البرمجة ليست مجرد كتابة أكواد، بل هي طريقة تفكير وإبداع. في هذا الدليل الشامل، 
-            سنسير معاً خطوة بخطوة في رحلة تحويلك من مبتدئ إلى مبرمج محترف.
-        </p>
-        
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; position: relative; z-index: 1;">
-            <a href="#roadmap" class="btn-primary" style="background: linear-gradient(90deg, #00ff88, #00ffaa); color: #0b1a36;">
-                <i class="fas fa-play"></i> ابدأ الرحلة الآن
-            </a>
-            <a href="#resources" class="btn-secondary">
-                <i class="fas fa-download"></i> مصادر مجانية
-            </a>
-        </div>
-    </section>
-
-    <!-- خطة التعلم -->
-    <section id="roadmap" class="roadmap-container">
-        <div class="section-header">
-            <h2 class="section-title" style="color: gold;">🗺️ خطة التعلم الشاملة</h2>
-            <p class="section-desc">مسار منظم لتعلم البرمجة في 6 أشهر</p>
-        </div>
-        
-        <!-- الخطوة 1 -->
-        <div class="roadmap-step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <h3 class="step-title">أساسيات البرمجة والتفكير المنطقي</h3>
-                <p class="step-description">
-                    قبل تعلم أي لغة برمجة، يجب فهم المفاهيم الأساسية: المتغيرات، الشروط، الحلقات، 
-                    الدوال، وهياكل البيانات الأساسية. هذه المرحلة تحدد نجاح رحلتك.
-                </p>
-                
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h4 class="resource-title">تدريب التفكير المنطقي</h4>
-                        <p>تمارين لحل المشكلات وتحسين التفكير المنطقي.</p>
-                        <a href="https://www.hackerrank.com" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i> ابدأ التحديات
-                        </a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h4 class="resource-title">كورس CS50</h4>
-                        <p>أفضل كورس مجاني لتعلم أساسيات علوم الحاسب.</p>
-                        <a href="https://cs50.harvard.edu/x/2024/" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i> شاهد الكورس
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- الخطوة 2 -->
-        <div class="roadmap-step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <h3 class="step-title">HTML & CSS - بناء واجهات الويب</h3>
-                <p class="step-description">
-                    تعلم بناء هيكل صفحات الويب وتصميمها. هذه الخطوة أساسية للدخول في تطوير الويب 
-                    وستمكنك من إنشاء مواقع جميلة وتفاعلية.
-                </p>
-                
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fab fa-html5"></i>
-                        </div>
-                        <h4 class="resource-title">دورة HTML كاملة</h4>
-                        <p>تعلم HTML5 من الصفر للإحتراف.</p>
-                        <a href="https://satr.tuwaiq.edu.sa/course/CATspNvVjT/view" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i> انضم للدورة
-                        </a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fab fa-css3-alt"></i>
-                        </div>
-                        <h4 class="resource-title">دورة CSS متقدمة</h4>
-                        <p>إتقان CSS3 مع Flexbox و Grid.</p>
-                        <a href="https://satr.tuwaiq.edu.sa/course/hNUwyBUKmF/view" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i> انضم للدورة
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- الخطوة 3 -->
-        <div class="roadmap-step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-                <h3 class="step-title">JavaScript - تفعيل الويب</h3>
-                <p class="step-description">
-                    إضافة التفاعلية لمواقعك. JavaScript هي لغة البرمجة الأهم في الواجهات الأمامية 
-                    وتمكنك من بناء تطبيقات ويب كاملة.
-                </p>
-                
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fab fa-js"></i>
-                        </div>
-                        <h4 class="resource-title">JavaScript من الصفر</h4>
-                        <p>تعلم الأساسيات إلى المستوى المتقدم.</p>
-                        <a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i> ابدأ التعلم
-                        </a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-project-diagram"></i>
-                        </div>
-                        <h4 class="resource-title">مشاريع عملية</h4>
-                        <p>30 مشروع تطبيقي لتعزيز مهاراتك.</p>
-                        <a href="https://javascript30.com" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i> ابدأ المشاريع
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- الخطوة 4 -->
-        <div class="roadmap-step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-                <h3 class="step-title">أطر العمل والتخصص</h3>
-                <p class="step-description">
-                    اختر تخصصك الدقيق: تطوير الواجهات الأمامية، الخلفية، تطبيقات الهواتف، 
-                    أو تحليل البيانات. ثم تعلم أطر العمل المناسبة.
-                </p>
-                
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fab fa-react"></i>
-                        </div>
-                        <h4 class="resource-title">React.js</h4>
-                        <p>إطار العمل الأشهر للواجهات الأمامية.</p>
-                        <a href="https://reactjs.org" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i> الوثائق الرسمية
-                        </a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fab fa-node-js"></i>
-                        </div>
-                        <h4 class="resource-title">Node.js</h4>
-                        <p>لبرمجة الخوادم باستخدام JavaScript.</p>
-                        <a href="https://nodejs.org" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i> الوثائق الرسمية
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- نصائح ذهبية -->
-    <section id="tips" class="tips-section">
-        <div class="section-header">
-            <h2 class="section-title" style="color: #ff00ff;">💡 نصائح ذهبية للمبتدئين</h2>
-            <p class="section-desc">سر النجاح في رحلة البرمجة</p>
-        </div>
-        
-        <div class="tips-container">
-            <div class="tip-card">
-                <h3 style="color: #ff00ff; margin-bottom: 0.5rem;">
-                    <i class="fas fa-check-circle"></i> الممارسة أهم من النظرية
-                </h3>
-                <p style="color: rgba(255, 255, 255, 0.9);">
-                    لا تقرأ فقط، بل اكتب الكود بنفسك. كل مشكلة تحلها تزيد من مهاراتك.
-                    ابدأ بمشاريع صغيرة ثم تدرج إلى مشاريع أكبر.
-                </p>
-            </div>
-            
-            <div class="tip-card">
-                <h3 style="color: #ff00ff; margin-bottom: 0.5rem;">
-                    <i class="fas fa-users"></i> انضم للمجتمعات البرمجية
-                </h3>
-                <p style="color: rgba(255, 255, 255, 0.9);">
-                    التواجد في مجتمعات مثل GitHub, Stack Overflow, Discord يساعدك في 
-                    التعلم من الآخرين والحصول على المساعدة عند الحاجة.
-                </p>
-            </div>
-            
-            <div class="tip-card">
-                <h3 style="color: #ff00ff; margin-bottom: 0.5rem;">
-                    <i class="fas fa-bug"></i> تعلم كيفية تصحيح الأخطاء
-                </h3>
-                <p style="color: rgba(255, 255, 255, 0.9);">
-                    الأخطاء جزء من العملية. تعلم قراءة رسائل الخطأ، استخدام أدوات التصحيح، 
-                    والبحث في Google عن الحلول.
-                </p>
-            </div>
-            
-            <div class="tip-card">
-                <h3 style="color: #ff00ff; margin-bottom: 0.5rem;">
-                    <i class="fas fa-code-branch"></i> استخدم نظام التحكم بالإصدارات
-                </h3>
-                <p style="color: rgba(255, 255, 255, 0.9);">
-                    تعلم Git و GitHub من البداية. هذه المهارة أساسية في سوق العمل 
-                    وتنظم عملك وتتعاون مع الآخرين.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- الأسئلة الشائعة -->
-    <section id="faq" class="faq-section">
-        <div class="section-header">
-            <h2 class="section-title" style="color: gold;">❓ الأسئلة الشائعة</h2>
-            <p class="section-desc">إجابات على أسئلتك حول تعلم البرمجة</p>
-        </div>
-        
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>ما هي أفضل لغة برمجة للبداية؟</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>
-                        Python تعتبر الأفضل للمبتدئين بسبب بساطتها وتنوع استخداماتها. 
-                        JavaScript أيضاً خيار ممتاز إذا كنت مهتماً بتطوير الويب.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>كم من الوقت أحتاج لأصبح مبرمجاً؟</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>
-                        مع الدراسة المنتظمة (10-15 ساعة أسبوعياً):
-                        <br>• 3-6 أشهر: أساسيات البرمجة
-                        <br>• 6-12 شهراً: مستوى متوسط ومشاريع عملية
-                        <br>• 1-2 سنوات: مستوى متقدم وجاهزية لسوق العمل
-                    </p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>هل أحتاج لشهادة جامعية؟</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>
-                        الشهادة الجامعية مفيدة ولكنها ليست ضرورية. ما يهم حقاً هو:
-                        <br>• مشاريعك الشخصية
-                        <br>• مهاراتك العملية
-                        <br>• فهمك للمفاهيم الأساسية
-                        <br>• قدرتك على حل المشكلات
-                    </p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>كيف أجد وظيفة في البرمجة؟</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>
-                        1. أنشئ معرض أعمال (Portfolio) بمشاريعك
-                        <br>2. شارك في مشاريع مفتوحة المصدر
-                        <br>3. أنشئ حساب على LinkedIn
-                        <br>4. تقدم للتدريب (Internship) أولاً
-                        <br>5. اجتاز المقابلات الفنية
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- دعوة للعمل -->
-    <section class="cta-learning">
-        <h2 style="font-size: 2.2rem; color: #00ff88; margin-bottom: 1rem;">🚀 مستعد لبدأ رحلتك؟</h2>
-        <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-            لا تؤجل بداية رحلتك. ابدأ اليوم بالخطوة الأولى، وستندهش مما يمكنك تحقيقه خلال سنة.
-        </p>
-        
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="#roadmap" class="btn-primary" style="background: linear-gradient(90deg, #00ff88, #00ffaa); color: #0b1a36;">
-                <i class="fas fa-rocket"></i> أبدأ الآن
-            </a>
-            <a href="index.html#courses" class="btn-secondary">
-                <i class="fas fa-graduation-cap"></i> الدورات المجانية
-            </a>
-            <a href="#contact" class="btn-secondary">
-                <i class="fas fa-question-circle"></i> اسأل سؤال
-            </a>
-        </div>
-    </section>
-
-    <!-- التذييل -->
-    <footer style="background: rgba(11, 26, 54, 0.9); padding: 3rem 1rem; margin-top: 4rem; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
-        <div style="max-width: var(--max); margin: 0 auto;">
-            <h3 style="color: gold; margin-bottom: 1.5rem;">TseYFZ - دليل تعلم البرمجة</h3>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
-                <div>
-                    <h4 style="color: gold; margin-bottom: 1rem;"><i class="fas fa-book"></i> مصادر مجانية</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><a href="https://freecodecamp.org" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">FreeCodeCamp</a></li>
-                        <li><a href="https://w3schools.com" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">W3Schools</a></li>
-                        <li><a href="https://cs50.harvard.edu" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">Harvard CS50</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 style="color: gold; margin-bottom: 1rem;"><i class="fas fa-tools"></i> أدوات مساعدة</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><a href="https://codepen.io" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">CodePen</a></li>
-                        <li><a href="https://replit.com" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">Replit</a></li>
-                        <li><a href="https://github.com" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">GitHub</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 style="color: gold; margin-bottom: 1rem;"><i class="fas fa-comments"></i> مجتمعات</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><a href="https://stackoverflow.com" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">Stack Overflow</a></li>
-                        <li><a href="https://dev.to" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">DEV Community</a></li>
-                        <li><a href="https://reddit.com/r/learnprogramming" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">Reddit</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;">
-                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">
-                    © 2024 TseYFZ - دليل تعلم البرمجة من الصفر إلى الاحتراف<br>
-                    "التعلم المستمر هو سر التميز في البرمجة"
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // تفعيل القائمة المنسدلة
-        (function(){
-            const menu = document.querySelector('.hdr-menu');
-            if(!menu) return;
-            const btn = menu.querySelector('.hdr-menu__btn');
-            const list = menu.querySelector('.hdr-menu__list');
-
-            function toggleMenu(){
-                const isOpen = list.hidden === false;
-                list.hidden = isOpen;
-                btn.setAttribute('aria-expanded', !isOpen);
-            }
-
-            btn.addEventListener('click', (e)=>{
-                e.stopPropagation();
-                toggleMenu();
-            });
-
-            document.addEventListener('click', (e)=>{
-                if(!menu.contains(e.target) && list.hidden === false) {
-                    toggleMenu();
-                }
-            });
-
-            document.addEventListener('keydown', (e)=>{
-                if(e.key === 'Escape' && list.hidden === false) {
-                    toggleMenu();
-                }
-            });
-        })();
-
-        // تفعيل الأسئلة الشائعة
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('i');
-                
-                // إغلاق جميع الإجابات الأخرى
-                document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
-                    if (otherAnswer !== answer) {
-                        otherAnswer.classList.remove('open');
-                        otherAnswer.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
-                    }
-                });
-                
-                // تبديل الحالة
-                answer.classList.toggle('open');
-                icon.style.transform = answer.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-            });
-        });
-
-        // تفعيل الروابط السلسة
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
